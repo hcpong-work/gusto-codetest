@@ -50,7 +50,7 @@
 
 ### d. Endpoints
 - Please refers to `http://localhost/api-docs`
-* api setup is used to set the prizes, below example is to set 5% chance of "$5 cash coupon" with 4 daily quota and 20 total quota and 95% chance of no prize without limit
+* Api `/prizes/setup` is used to set the prizes, below example is to set 5% chance of "$5 cash coupon" with 4 daily quota and 20 total quota and 95% chance of no prize without limit
 ```
 {
     "categories": [
