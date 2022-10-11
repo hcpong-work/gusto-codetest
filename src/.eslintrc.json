@@ -1,0 +1,26 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": "standard-with-typescript",
+    "parser": "@typescript-eslint/parser",
+    "settings": {
+        "eslint.workingDirectories": [
+            "./src"
+        ]
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": [
+            "./tsconfig.json"
+        ]
+    },
+    "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+    }
+}

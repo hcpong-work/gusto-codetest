@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Prize {
+  id String @id
+  name String
+  total Int
+  daily Int
+  odds Decimal
+  winners Winner[]
+  isDefault Boolean @default(false)
+  @@map("prize")
+}
+
+model Winner {
+  id Int @id @default(autoincrement())
+  entryId String @unique
+  customerId String
+  phone String
+  prizeId String 
+  prize Prize @relation(fields: [prizeId], references: [id])
+  createdAt DateTime
+  redeemedAt DateTime?
+  @@map("winner")
+}

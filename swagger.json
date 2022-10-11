@@ -1,0 +1,140 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Gusto Code Test",
+      "version": "v1"
+    },
+    "paths": {
+      "/prizes/setup": {
+        "post": {
+          "summary": "Setup data with input",
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "200 response",
+              "examples": {
+                "application/json": "{}"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "categories",
+              "in": "body",
+              "description": "List of prizes",
+              "schema": {
+                "properties":{
+                  "categories": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Prize"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      "/prizes/draw": {
+        "post": {
+          "summary": "Draw a prize",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "simple input of user id",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+          "responses": {
+            "200": {
+              "description": "Draw a prize",
+              "examples": {
+                "application/json": "{\"msg\":\"You win 'Buy 1 Get 1 Free Coupon'!\",\"entryId\":\"i1pZr6IsBmgaiLhg\"}"
+              }
+            }
+          }
+        }
+      },
+      "/prizes/redeem": {
+        "post": {
+          "summary": "Show API version details",
+          "produces": [
+            "application/json"
+          ],
+          
+          "parameters": [
+            {
+              "name": "data",
+              "in": "body",
+              "description": "winning entry id",
+              "schema": {
+                "$ref": "#/definitions/Redeem"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Redeem a prize with phone",
+              "examples": {
+                "application/json": "{\"msg\": \"Success! Please wait for the SMS confirmation. Thanks.\"}"
+              }
+            },
+            "400": {
+              "description": "Redeem a already redeemed prize",
+              "examples": {
+                "application/json": "{\"msg\": \"You already redeemed this prize.\"}"
+              }
+            }
+          }
+        }
+      }
+    },
+    "consumes": [
+      "application/json"
+    ],
+    "definitions": {
+      "Prize": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "daily": {
+            "type": "number"
+          },
+          "total": {
+            "type": "number"
+          },
+          "odds": {
+            "type": "number"
+          },
+          "isDefault": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Redeem": {
+        "type": "object",
+        "properties": {
+          "entryId": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }

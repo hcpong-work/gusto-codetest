@@ -1,0 +1,42 @@
+version: "3.9"
+networks:
+  app:
+    driver: bridge
+
+services:
+  redis:
+    restart: always
+    container_name: redis
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - /data/redis-data:/data
+    networks:
+      - app
+  mysql:
+    image: mysql:8
+    restart: always
+    container_name: mysql8
+    volumes:
+      - ~/mysql-docker-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: gusto
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    networks:
+      - app
+  api:
+    image: api-server
+    ports:
+      - 80:3000
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - app
+    command: sh "/usr/src/app/start.sh"
+
