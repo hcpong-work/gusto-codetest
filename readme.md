@@ -3,7 +3,8 @@
 ## -- Updated 2022-10-13--
 ### Test
 0. Assumption
-- simple testing only with the same database used in the api server
+- simple testing only to demonstrate tests, with the same server and database used.
+- in production environment, it should be tested with separate database.
 1. Finish (1) Setup
 2. npm run test
 
