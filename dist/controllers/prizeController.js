@@ -114,14 +114,17 @@ function actionDraw(req, res) {
                 msg: 'Unauthorized'
             });
         }
+        console.log('111');
         const customerId = (_a = req.headers.authorization) !== null && _a !== void 0 ? _a : '';
         if (yield winner_1.default.customerPlayedToday(customerId)) {
             return res.status(400).json({
                 msg: message_1.message.JOIN_TMR
             });
         }
+        console.log('118');
         const randomNum = Math.random();
         const allPrizes = (yield prize_1.default.getAll());
+        console.log('121');
         let result = null;
         // sort by ascending first
         const defaultPrize = allPrizes.find(prize => prize.isDefault);
@@ -130,6 +133,7 @@ function actionDraw(req, res) {
                 msg: message_1.message.NOT_INIT
             });
         }
+        console.log('129');
         const prizes = allPrizes.filter(prize => !prize.isDefault).sort((a, b) => {
             return (a === null || a === void 0 ? void 0 : a.odds) - (b === null || b === void 0 ? void 0 : b.odds);
         });
@@ -141,6 +145,7 @@ function actionDraw(req, res) {
                 break;
             }
         }
+        console.log('143');
         if (result == null) {
             result = yield getPrize(customerId, defaultPrize, undefined);
         }

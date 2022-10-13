@@ -3,7 +3,7 @@ import { prisma } from '../utils/prismaHelper'
 import Prize from './prize'
 
 export default class Winner {
-  id: string | undefined
+  id: number | undefined
   phone: string
   prize: Prize
   customerId: string
@@ -77,7 +77,7 @@ export default class Winner {
   }
 
   static async deleteAll (): Promise<void> {
-    await prisma.winner.deleteMany()
+    await prisma.winner.deleteMany({})
   }
 
   static async customerPlayedToday (customerId: string): Promise<boolean> {

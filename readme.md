@@ -1,8 +1,15 @@
 # Gusto Code Test Readme
 
+## -- Updated 2022-10-13--
+### Test
+0. Assumption
+- simple testing only with the same database used in the api server
+1. Finish (1) Setup
+2. npm run test
+
 ## 1. Setup
 1. Git pull from source
-2. Run command `docker build -t api-server .`
+2. Run command `docker build -t api-server --no-cache .`
 3. Run command `docker-compose up`
 4. Access `http://localhost/api-docs` to see swagger ui page.
 

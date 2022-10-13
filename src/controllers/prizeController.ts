@@ -124,9 +124,11 @@ export async function actionDraw (req: Request, res: Response): Promise<any> {
       msg: message.NOT_INIT
     })
   }
+
   const prizes = allPrizes.filter(prize => !prize.isDefault).sort((a, b) => {
     return a?.odds - b?.odds
   })
+
   let prevOddsSum = 0
   for (const prize of prizes) {
     if (randomNum < prize.odds + prevOddsSum) {

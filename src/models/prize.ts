@@ -35,7 +35,7 @@ export default class Prize {
   }
 
   static async deleteAll (): Promise<void> {
-    await prisma.prize.deleteMany()
+    await prisma.prize.deleteMany({})
   }
 
   static async getQuota (prize: Prize): Promise<{ daily: number, total: number }> {
